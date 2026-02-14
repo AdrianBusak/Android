@@ -13,4 +13,9 @@
         android:id="@+id/aboutFragment"
         android:icon="@drawable/ic_about"
         android:title="@string/menu_about" />
+
+    <item
+        android:id="@+id/randomDriverFragment"
+        android:icon="@drawable/ic_drivers"
+        android:title="@string/random_driver" />
 </menu>

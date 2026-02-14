@@ -26,5 +26,6 @@
 
     <string name="menu_drivers">Vozači</string>
     <string name="menu_about">O aplikaciji</string>
+    <string name="random_driver">Driver of the day</string>
 
 </resources>
