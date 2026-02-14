@@ -43,9 +43,6 @@ class DriverPagerAdapter(
         }
     }
 
-    // "content://hr.algebra.f1_app.provider/drivers
-    //"content://hr.algebra.f1_app.provider/drivers/22
-
     private fun updateDriver(position: Int) {
         val driver = drivers[position]
         driver.favorite = !driver.favorite
