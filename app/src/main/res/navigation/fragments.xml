@@ -1,20 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/f1_fragments"
-    app:startDestination="@id/menuDrivers">
+    android:id="@+id/fragments"
+    app:startDestination="@id/driversFragment">
 
     <fragment
-        android:id="@+id/menuDrivers"
-        android:label="@string/menu_drivers"
+        android:id="@+id/driversFragment"
         android:name="hr.algebra.f1_app.fragment.DriversFragment"
+        android:label="fragment_drivers"
         tools:layout="@layout/fragment_drivers" />
 
     <fragment
-        android:id="@+id/menuAbout"
-        android:label="@string/menu_about"
-        android:name="hr.algebra.f1_app.fragment.AboutFragment"
-        tools:layout="@layout/fragment_about" />
+        android:id="@+id/favoriteFragment"
+        android:name="hr.algebra.f1_app.fragment.FavoriteFragment"
+        android:label="Favoriti"
+        tools:layout="@layout/fragment_favorite" />
 
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="hr.algebra.f1_app.fragment.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

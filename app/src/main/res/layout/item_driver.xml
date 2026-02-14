@@ -9,25 +9,35 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:gravity="center_vertical"
         android:padding="@dimen/_10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            tools:src="@drawable/f1_default_driver"
             android:id="@+id/ivDriver"
             android:layout_width="@dimen/_50dp"
-            android:layout_height="@dimen/_50dp" />
+            android:layout_height="@dimen/_50dp"
+            tools:src="@drawable/f1_default_driver" />
 
         <TextView
-            android:textColor="?colorOnPrimary"
-            android:gravity="center_vertical"
-            android:textSize="@dimen/_20sp"
-            android:layout_marginStart="@dimen/_20dp"
-            tools:text="Max Verstappen"
             android:id="@+id/tvDriverName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="?colorOnPrimary"
+            android:textSize="@dimen/_20sp"
+            tools:text="Max Verstappen" />
+
+        <ImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_40dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_favorite_off"
+            app:tint="?colorOnPrimary" />
 
     </LinearLayout>
 

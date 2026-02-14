@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/driversFragment"
+        android:icon="@drawable/ic_drivers"
+        android:title="@string/menu_drivers" />
 
     <item
-        android:id="@+id/menuDrivers"
-        android:title="@string/menu_drivers"
-        android:icon="@drawable/ic_drivers" />
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_favorite_on"
+        android:title="Favoriti" />
 
     <item
-        android:id="@+id/menuAbout"
-        android:title="@string/menu_about"
-        android:icon="@drawable/ic_about" />
-
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_about"
+        android:title="@string/menu_about" />
 </menu>
