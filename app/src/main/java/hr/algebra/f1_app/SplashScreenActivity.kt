@@ -1,5 +1,6 @@
 package hr.algebra.f1_app
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.work.ExistingWorkPolicy
@@ -14,7 +15,7 @@ import hr.algebra.f1_app.framework.isOnline
 import hr.algebra.f1_app.framework.startActivity
 
 private const val DELAY = 3000L
-
+const val DATA_IMPORTED = "hr.algebra.f1_app.data_imported"
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
@@ -26,18 +27,22 @@ class SplashScreenActivity : AppCompatActivity() {
 
         startAnimations()
         redirect()
+
     }
 
     private fun startAnimations() {
+
         binding.tvSplash.applyAnimation(R.anim.blink)
         binding.ivSplash.applyAnimation(R.anim.rotate)
+
     }
 
     private fun redirect() {
-        if (getBooleanPreference(DATA_IMPORTED)) {
+
+        if(getBooleanPreference(DATA_IMPORTED)) {
             callDelayed(DELAY) { startActivity<HostActivity>() }
         } else {
-            if (isOnline()) {
+            if(isOnline()) {
                 WorkManager.getInstance(this).apply {
                     enqueueUniqueWork(
                         DATA_IMPORTED,

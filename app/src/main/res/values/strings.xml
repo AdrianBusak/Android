@@ -10,6 +10,7 @@
     <string name="about_f1_app">
     Pregled aktualnih F1 vozača i timova pomoću OpenF1 API-ja
 </string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="exit">Izlaz</string>
     <string name="do_you_really_want_to_exit_an_app">

@@ -14,33 +14,20 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/ivDriver"
             tools:src="@drawable/f1_default_driver"
+            android:id="@+id/ivDriver"
             android:layout_width="@dimen/_50dp"
             android:layout_height="@dimen/_50dp" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+            android:textColor="?colorOnPrimary"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/_20sp"
             android:layout_marginStart="@dimen/_20dp"
+            tools:text="Max Verstappen"
+            android:id="@+id/tvDriverName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvDriverName"
-                android:textColor="?colorOnPrimary"
-                android:textSize="@dimen/_18sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Lando Norris" />
-
-            <TextView
-                android:id="@+id/tvDriverTeam"
-                android:textColor="?colorOnPrimary"
-                android:textSize="@dimen/_14sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="McLaren" />
-        </LinearLayout>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

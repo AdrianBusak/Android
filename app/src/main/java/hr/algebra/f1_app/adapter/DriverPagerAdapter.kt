@@ -19,27 +19,36 @@ import java.io.File
 class DriverPagerAdapter(
     private val context: Context,
     private val drivers: MutableList<F1Driver>
-) : RecyclerView.Adapter<DriverPagerAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<DriverPagerAdapter.ViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
+        return ViewHolder(
             LayoutInflater.from(context)
                 .inflate(R.layout.item_driver_pager, parent, false)
         )
+    }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int
+    ) {
         val driver = drivers[position]
         holder.bind(driver)
 
         holder.ivFavorite.setOnClickListener {
-            toggleFavorite(position)
+            updateDriver(position)
         }
     }
 
-    private fun toggleFavorite(position: Int) {
+    // "content://hr.algebra.f1_app.provider/drivers
+    //"content://hr.algebra.f1_app.provider/drivers/22
+
+    private fun updateDriver(position: Int) {
         val driver = drivers[position]
         driver.favorite = !driver.favorite
-
         context.contentResolver.update(
             ContentUris.withAppendedId(F1_PROVIDER_CONTENT_URI, driver._id!!),
             ContentValues().apply {
@@ -52,31 +61,34 @@ class DriverPagerAdapter(
         notifyItemChanged(position)
     }
 
-    override fun getItemCount() = drivers.size
+    override fun getItemCount() = drivers.count()
 
+    // DriverPagerAdapter.kt
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvName = itemView.findViewById<TextView>(R.id.tvDriverName)
-        private val tvTeam = itemView.findViewById<TextView>(R.id.tvDriverTeam)
-        private val tvNumber = itemView.findViewById<TextView>(R.id.tvDriverNumber)
-        private val tvCountry = itemView.findViewById<TextView>(R.id.tvCountry)
         private val ivDriver = itemView.findViewById<ImageView>(R.id.ivDriver)
-        val ivFavorite: ImageView = itemView.findViewById(R.id.ivFavorite)
+        private val tvDriverNumber = itemView.findViewById<TextView>(R.id.tvDriverNumber)
+        private val tvDriverName = itemView.findViewById<TextView>(R.id.tvDriverName)
+        private val tvDriverTeam = itemView.findViewById<TextView>(R.id.tvDriverTeam)
+        private val tvCountry = itemView.findViewById<TextView>(R.id.tvCountry)
+        val ivFavorite = itemView.findViewById<ImageView>(R.id.ivFavorite)
 
         fun bind(driver: F1Driver) {
-            tvName.text = driver.fullName
-            tvTeam.text = driver.teamName
-            tvNumber.text = driver.driverNumber.toString()
-            tvCountry.text = driver.countryCode ?: "-"
+            tvDriverNumber.text = driver.driverNumber.toString()
+            tvDriverName.text = "${driver.firstName} ${driver.lastName}"
+            tvDriverTeam.text = driver.teamName
+            tvCountry.text = driver.countryCode
+
             ivFavorite.setImageResource(
                 if (driver.favorite) R.drawable.ic_favorite_on
                 else R.drawable.ic_favorite_off
             )
 
-            Picasso.get()
-                .load(File(driver.headshotPath))
-                .error(R.drawable.f1_default_driver)
-                .transform(RoundedCornersTransformation(50, 5))
-                .into(ivDriver)
+            if (driver.headshotPath.isNotEmpty()) {
+                Picasso.get()
+                    .load(File(driver.headshotPath))
+                    .error(R.drawable.f1_default_driver)
+                    .into(ivDriver)
+            }
         }
     }
 }

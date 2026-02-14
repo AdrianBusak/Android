@@ -1,8 +1,7 @@
 package hr.algebra.f1_app.adapter
 
+import android.content.ContentUris
 import android.content.Context
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Transformation
+import hr.algebra.f1_app.DRIVER_POS
 import hr.algebra.f1_app.DriverPagerActivity
 import hr.algebra.f1_app.R
 import hr.algebra.f1_app.framework.startActivity
@@ -24,13 +23,20 @@ class DriverAdapter(
     private val drivers: MutableList<F1Driver>
 ) : RecyclerView.Adapter<DriverAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.item_driver, parent, false)
+            LayoutInflater.from(context)
+                .inflate(R.layout.item_driver, parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int
+    ) {
         val driver = drivers[position]
         holder.bind(driver)
 
@@ -50,60 +56,35 @@ class DriverAdapter(
     private fun deleteDriver(position: Int) {
         val driver = drivers[position]
         context.contentResolver.delete(
-            Uri.withAppendedPath(F1_PROVIDER_CONTENT_URI, driver._id.toString()),
+            ContentUris.withAppendedId(F1_PROVIDER_CONTENT_URI, driver._id!!),
             null,
             null
         )
         File(driver.headshotPath!!).delete()
         drivers.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemRangeChanged(position, drivers.size)
+        notifyDataSetChanged()
     }
 
-    override fun getItemCount() = drivers.size
+    override fun getItemCount() = drivers.count()
 
+    // DriverAdapter.kt
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvDriverName: TextView = itemView.findViewById(R.id.tvDriverName)
-        private val tvDriverTeam: TextView = itemView.findViewById(R.id.tvDriverTeam)
-        private val ivDriver: ImageView = itemView.findViewById(R.id.ivDriver)
+        private val ivItem = itemView.findViewById<ImageView>(R.id.ivDriver)
+        private val tvItem = itemView.findViewById<TextView>(R.id.tvDriverName)
 
         fun bind(driver: F1Driver) {
-            tvDriverName.text = "${driver.firstName} ${driver.lastName}"
-            tvDriverTeam.text = driver.teamName ?: "Unknown Team"
+            // Pazi: tvItem mora postojati u item_driver.xml
+            tvItem.text = "${driver.firstName} ${driver.lastName}"
 
-            // ✅ SAFE NULL CHECK + DEBUG
-            val headshotPath = driver.headshotPath
-            Log.d("DriverAdapter", "${driver.firstName}: headshotPath='$headshotPath'")
-
-            if (!headshotPath.isNullOrEmpty()) {
-                val photoFile = File(headshotPath)
-                Log.d("DriverAdapter", "${driver.firstName}: file exists=${photoFile.exists()}, size=${photoFile.length()}")
-
-                if (photoFile.exists() && photoFile.length() > 0) {
-                    Picasso.get()
-                        .load(photoFile)
-                        .placeholder(R.drawable.f1_default_driver)
-                        .error(R.drawable.f1_default_driver)
-                        .transform(RoundedCornersTransformation(30, 5))
-                        .into(ivDriver)
-                } else {
-                    // File ne postoji → default
-                    Picasso.get()
-                        .load(R.drawable.f1_default_driver)
-                        .into(ivDriver)
-                }
-            } else {
-                // NULL path → default
-                Log.w("DriverAdapter", "❌ NULL headshotPath za ${driver.firstName}")
+            // Picasso dio
+            if (driver.headshotPath.isNotEmpty()) {
                 Picasso.get()
-                    .load(R.drawable.f1_default_driver)
-                    .into(ivDriver)
+                    .load(File(driver.headshotPath))
+                    .error(R.drawable.f1_default_driver)
+                    .into(ivItem)
+            } else {
+                ivItem.setImageResource(R.drawable.f1_default_driver)
             }
         }
-
-    }
-
-    companion object {
-        const val DRIVER_POS = "DRIVER_POS"
     }
 }

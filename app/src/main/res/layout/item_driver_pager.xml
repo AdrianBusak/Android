@@ -1,85 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:padding="@dimen/_10dp"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_15dp">
 
-        <ImageView
-            android:id="@+id/ivDriver"
-            tools:src="@drawable/f1_default_driver"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_300dp" />
+            android:layout_height="@dimen/_300dp"
+            app:cardCornerRadius="@dimen/_12dp"
+            app:cardElevation="4dp">
+
+            <ImageView
+                android:id="@+id/ivDriver"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/f1_default_driver" />
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
-                android:text="@string/number"
-                android:textStyle="bold"
-                android:textColor="@android:color/holo_red_dark"
-                android:layout_weight="5"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/number"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_14sp"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvDriverNumber"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_24sp"
+                    android:textStyle="bold"
+                    tools:text="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/ivFavorite"
-                android:src="@drawable/ic_favorite_off"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="@dimen/_50dp"
+                android:layout_height="@dimen/_50dp"
+                android:padding="@dimen/_10dp"
+                android:src="@drawable/ic_favorite_off" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvDriverNumber"
-            tools:text="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:background="#DDDDDD" />
 
         <TextView
+            android:layout_marginTop="@dimen/_15dp"
             android:text="@string/driver"
             android:textStyle="bold"
+            android:textSize="@dimen/_14sp"
             android:textColor="@android:color/holo_red_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tvDriverName"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_20sp"
             tools:text="Lando Norris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_marginTop="@dimen/_15dp"
             android:text="@string/team"
             android:textStyle="bold"
+            android:textSize="@dimen/_14sp"
             android:textColor="@android:color/holo_red_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tvDriverTeam"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_20sp"
             tools:text="McLaren"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_marginTop="@dimen/_15dp"
             android:text="@string/country"
             android:textStyle="bold"
+            android:textSize="@dimen/_14sp"
             android:textColor="@android:color/holo_red_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tvCountry"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_20sp"
             tools:text="GBR"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20dp"/>
 
     </LinearLayout>
 

@@ -2,7 +2,11 @@ package hr.algebra.f1_app.dao
 
 import android.content.ContentValues
 import android.database.Cursor
+import android.net.Uri
 
+// selection city = ? and mayor = ?
+// selectionArgs [0] = "Zagreb"
+// selectionArgs [1] = "Banderas"
 interface Repository {
     fun delete(selection: String?, selectionArgs: Array<String>?): Int
 
@@ -20,4 +24,6 @@ interface Repository {
     ): Cursor
 
     fun insert(values: ContentValues?): Long
+
+
 }

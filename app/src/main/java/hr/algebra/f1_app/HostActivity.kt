@@ -4,13 +4,17 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import hr.algebra.f1_app.databinding.ActivityHostBinding
-import hr.algebra.f1_app.provider.F1_PROVIDER_CONTENT_URI
 
 class HostActivity : AppCompatActivity() {
 
@@ -50,9 +54,13 @@ class HostActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> toggleDrawer()
-            R.id.miExit -> exitApp()
+        when(item.itemId) {
+            android.R.id.home -> {
+                toggleDrawer()
+            }
+            R.id.miExit -> {
+                exitApp()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -70,7 +78,7 @@ class HostActivity : AppCompatActivity() {
     }
 
     private fun toggleDrawer() {
-        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawers()
         } else {
             binding.drawerLayout.openDrawer(GravityCompat.START)
@@ -78,7 +86,7 @@ class HostActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
-        val navController = findNavController(R.id.navController)
+        val navController = findNavController(this, R.id.navController)
         NavigationUI.setupWithNavController(binding.navView, navController)
     }
 }

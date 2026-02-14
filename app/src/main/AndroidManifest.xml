@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,39 +14,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.F1APP">
-
-        <!-- Splash kao launcher -->
-        <activity
-            android:name=".SplashScreenActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <!-- HostActivity s drawerom i navigationom -->
-        <activity
-            android:name=".HostActivity"
-            android:exported="false" />
-
-        <!-- Pager za detalje vozača -->
         <activity
             android:name=".DriverPagerActivity"
             android:exported="false" />
 
-        <!-- ContentProvider za drivere -->
         <provider
             android:name=".provider.F1Provider"
-            android:authorities="hr.algebra.f1.provider"
+            android:authorities="hr.algebra.f1_app.provider"
             android:enabled="true"
             android:exported="false" />
 
-        <!-- BroadcastReceiver koji se pali kad Worker završi import -->
         <receiver
             android:name=".F1Receiver"
+            android:enabled="true"
             android:exported="false" />
 
+        <activity
+            android:name=".HostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.Dark">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
