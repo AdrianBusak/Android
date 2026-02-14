@@ -3,9 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        app:showAsAction="ifRoom"
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Pretraži"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Sortiraj"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/miExit"
-        android:title="@string/exit"
-        android:icon="@drawable/exit"
-        />
+        android:title="Izlaz"
+        app:showAsAction="never" />
 </menu>
