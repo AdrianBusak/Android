@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:padding="@dimen/_50dp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashScreenActivity"
+    tools:ignore="ExtraText">
+
+    <ImageView
+        android:id="@+id/ivSplash"
+        android:src="@drawable/f1_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_200dp" />
+
+    <TextView
+        android:id="@+id/tvSplash"
+        android:layout_marginTop="@dimen/_20dp"
+        android:text="@string/please_wait_loading_drivers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

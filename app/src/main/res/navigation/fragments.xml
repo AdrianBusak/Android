@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/f1_fragments"
+    app:startDestination="@id/menuDrivers">
+
+    <fragment
+        android:id="@+id/menuDrivers"
+        android:label="@string/menu_drivers"
+        android:name="hr.algebra.f1_app.fragment.DriversFragment"
+        tools:layout="@layout/fragment_drivers" />
+
+    <fragment
+        android:id="@+id/menuAbout"
+        android:label="@string/menu_about"
+        android:name="hr.algebra.f1_app.fragment.AboutFragment"
+        tools:layout="@layout/fragment_about" />
+
+</navigation>

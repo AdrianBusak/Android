@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">F1 Drivers</string>
+
+    <string name="please_wait">Molimo pričekajte...</string>
+    <string name="please_wait_loading_drivers">Dohvaćam F1 vozače...</string>
+
+    <string name="application_made_by_algebra_students">
+    Aplikacija izrađena za kolegij Izrada aplikacija za mobilne uređaje
+</string>
+    <string name="about_f1_app">
+    Pregled aktualnih F1 vozača i timova pomoću OpenF1 API-ja
+</string>
+
+    <string name="exit">Izlaz</string>
+    <string name="do_you_really_want_to_exit_an_app">
+    Želite li zaista izaći iz aplikacije?
+</string>
+    <string name="cancel">Odustani</string>
+    <string name="no_internet">Nema internetske veze</string>
+
+    <string name="driver">Vozač</string>
+    <string name="team">Tim</string>
+    <string name="number">Broj</string>
+    <string name="country">Država</string>
+
+    <string name="menu_drivers">Vozači</string>
+    <string name="menu_about">O aplikaciji</string>
+
+</resources>
